@@ -12,42 +12,37 @@ package assignment02PartB;
 // Please organize all the given files in 1 same package
 // Please make sure to read the provided "_ListOf-PleaseDoNotChange.txt"
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 public class StdOutStdErrTee extends OutputStream {
 
     //
     // Static Data Fields
     //
-
     //
     // Instance Data Fields
     //
     private String stdOutFilePath;
     private String stdErrFilePath;
-    private OutputStream[] streamsToConsoletoFile;
+    private OutputStream[] streamsToConsoleToFile;
     //
     // Constructors
     //
     public StdOutStdErrTee(){
 
     }
-    public StdOutStdErrTee(OutputStream printStream, OutputStream fileOutputStream){
-        this.streamsToConsoletoFile = new OutputStream[2];
-        streamsToConsoletoFile[0] = printStream;
-        streamsToConsoletoFile[1] = fileOutputStream;
+
+
+    public StdOutStdErrTee(PrintStream printStream, FileOutputStream fileOutputStream){
+        this.streamsToConsoleToFile = new OutputStream[2];
+        streamsToConsoleToFile[0] = printStream;
+        streamsToConsoleToFile[1] = fileOutputStream;
     }
     public StdOutStdErrTee(String stdOutFilePath, String stdErrFilePath){
         this.stdOutFilePath = stdOutFilePath;
         this.stdErrFilePath = stdErrFilePath;
     }
 
-    public StdOutStdErrTee(PrintStream out, FileOutputStream stdOutFile) {
-        super();
-    }
 
     //
     // Instance Methods
@@ -60,11 +55,11 @@ public class StdOutStdErrTee extends OutputStream {
             StdOutStdErrTee allStdOut = new StdOutStdErrTee(System.out, stdOutFile);
             StdOutStdErrTee allStdErr = new StdOutStdErrTee(System.err, stdErrFile);
 
-            PrintStream stdOut = new PrintStream(String.valueOf(allStdOut));
-            PrintStream stdErr = new PrintStream(String.valueOf(allStdErr));
+            PrintStream stdOut = new PrintStream(allStdOut);
+            PrintStream stdErr = new PrintStream(allStdErr);
 
             System.setOut(stdOut);
-            System.setOut(stdErr);
+            System.setErr(stdErr);
         } catch(FileNotFoundException exception) {
             System.out.println(exception.getMessage());
         }
@@ -88,5 +83,12 @@ public class StdOutStdErrTee extends OutputStream {
 
     //
     // Override
+    @Override
+    public void write(int b) throws IOException {
+        for (OutputStream out : this.streamsToConsoleToFile) {
+            out.write(b);
+            out.flush();
+        }
+    }
     //
 }
