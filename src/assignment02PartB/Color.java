@@ -24,6 +24,7 @@ public final class Color {
     //
     // Instance Data Fields
     //
+    public String colorSequences = "ANSI";
 
     //
     // Constructors
@@ -38,8 +39,8 @@ public final class Color {
     //
     // Instance Methods
     //
-    public Color getColorSequences(){
-        return null;
+    public String getColorSequences(){
+        return this.colorSequences;
     }
     //
     // Language

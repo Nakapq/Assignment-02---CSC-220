@@ -15,15 +15,48 @@ package assignment02PartB;
 public final class Player extends Person {
 
     // Instance Data Fields
+    private String club;
+    private String position;
+    private int number;
+    private String batHand;
+    private String throwHand;
+    private int mlbDebut;
 
     //
     // Constructors
     //
     public Player() {
     }
-
+    public Player(String name, String club, String position, int number, String batHand, String throwHand, int mlbDebut){
+        setName(name);
+        this.club = club;
+        this.position = position;
+        this.number = number;
+        this.batHand = batHand;
+        this.throwHand = throwHand;
+        this.mlbDebut = mlbDebut;
+    }
     //
     // Instance Methods
+
+    public String getClub() {
+        return this.club;
+    }
+    public String getPosition(){
+        return this.position;
+    }
+    public int getNumber(){
+        return this.number;
+    }
+    public String getBatHand() {
+        return this.batHand;
+    }
+    public String getThrowHand() {
+        return this.throwHand;
+    }
+    public int getMlbDebut() {
+        return this.mlbDebut;
+    }
     //
 
     @Override

@@ -17,22 +17,19 @@ public final class Manager extends Person {
     //
     // Instance Data Fields
     //
-
+    private String name;
     //
     // Constructors
     //
     public Manager() {
     }
+    public Manager(String name){
+        setName(name);
+    }
 
     //
     // Instance Methods
     //
-
-    @Override
-    public void sayGreeting(String string) {
-
-    }
-
     //
     // Language
     //
@@ -40,4 +37,8 @@ public final class Manager extends Person {
     //
     // Override
     //
+    @Override
+    public void sayGreeting(String string) {
+
+    }
 }

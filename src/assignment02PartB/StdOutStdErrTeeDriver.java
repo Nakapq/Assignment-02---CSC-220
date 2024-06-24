@@ -3,8 +3,8 @@ package assignment02PartB;
 import java.util.Scanner;
 
 public class StdOutStdErrTeeDriver {
-        private static String stdOutFile = "./src/csc220SandBox05/asmt02MoreHelpStandardOut.log";
-        private static String stdErrFile = "./src/csc220SandBox05/asmt02MoreHelpStandardErr.log";
+        private static final String stdOutFile = "./src/assignment02PartB/asmt02MoreHelpStandardOut.log";
+        private static final String stdErrFile = "./src/assignment02PartB/asmt02MoreHelpStandardErr.log";
         public static StdOutStdErrTee configTee = new StdOutStdErrTee(stdOutFile, stdErrFile);
 
         public static void main(String[] args) {
@@ -19,6 +19,6 @@ public class StdOutStdErrTeeDriver {
             System.out.println("1. \"asmt02MoreHelpStandardOut.log\" has a copy of standard output in the console.");
             System.out.println("2. \"asmt02MoreHelpStandardErr.log\" has a copy of standard error in the console.");
 
-            StdOutStdErrTee.stopLog();
+            StdOutStdErrTeeDriver.configTee.stopLog();
         }
 }

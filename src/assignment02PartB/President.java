@@ -17,13 +17,15 @@ public final class President extends Person {
     //
     // Instance Data Fields
     //
-
+    private String name;
     //
     // Constructors
     //
     public President() {
     }
-
+    public President(String name){
+        setName(name);
+    }
     //
     // Instance Methods
     //

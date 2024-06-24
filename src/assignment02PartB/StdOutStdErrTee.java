@@ -4,7 +4,7 @@
  * CSC 220 -  Data Structures
  * File Name: StdOutStdErrTee.java
  * Author: Duc Ta
- * Author: <First Name> <Last Name>
+ * Author: Jack Li
  * **********************************************
  */
 
@@ -19,11 +19,13 @@ public class StdOutStdErrTee extends OutputStream {
     //
     // Static Data Fields
     //
+    private static final PrintStream originalOut = System.out;
+    private static final PrintStream originalErr = System.err;
     //
     // Instance Data Fields
     //
-    private String stdOutFilePath;
-    private String stdErrFilePath;
+    private String stdOutFilePath = "./src/assignment02PartB/log/StandardOut.log";
+    private String stdErrFilePath = "./src/assignment02PartB/log/StandardErr.log";
     private OutputStream[] streamsToConsoleToFile;
     //
     // Constructors
@@ -48,7 +50,7 @@ public class StdOutStdErrTee extends OutputStream {
     // Instance Methods
     //
     public void startLog(){
-        try{
+        try {
             FileOutputStream stdOutFile = new FileOutputStream(new File(this.stdOutFilePath));
             FileOutputStream stdErrFile = new FileOutputStream(new File(this.stdErrFilePath));
 
@@ -60,22 +62,36 @@ public class StdOutStdErrTee extends OutputStream {
 
             System.setOut(stdOut);
             System.setErr(stdErr);
+
         } catch(FileNotFoundException exception) {
             System.out.println(exception.getMessage());
         }
     }
-    public static void stopLog(){
-
+    public void stopLog(){
+        System.setOut(originalOut);
+        System.setErr(originalOut);
+        try {
+            PrintStream outStream = System.out;
+            PrintStream errStream = System.err;
+            if (outStream != originalOut) {
+                outStream.close();
+            }
+            if (errStream != originalErr) {
+                errStream.close();
+            }
+        } catch(Exception e) {
+            System.out.println("Error closing streams: " + e.getMessage());
+        }
     }
+    //
+    // Additional Methods
+    //
     public String getStdOutFilePath(){
         return this.stdOutFilePath;
     }
     public String getStdErrFilePath(){
         return this.stdErrFilePath;
     }
-    //
-    // Additional Methods
-    //
 
     //
     // Language
@@ -85,9 +101,9 @@ public class StdOutStdErrTee extends OutputStream {
     // Override
     @Override
     public void write(int b) throws IOException {
-        for (OutputStream out : this.streamsToConsoleToFile) {
-            out.write(b);
-            out.flush();
+        for(OutputStream out : this.streamsToConsoleToFile) {
+         out.write(b);
+         out.flush();
         }
     }
     //

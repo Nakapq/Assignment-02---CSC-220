@@ -17,16 +17,18 @@ public final class GeneralManager extends Person {
     //
     // Instance Data Fields
     //
-
     //
     // Constructors
     //
     public GeneralManager() {
     }
-
+    public GeneralManager(String name) {
+        setName(name);
+    }
     //
     // Instance Methods
     //
+
 @Override
     public void sayGreeting(String string){
 

@@ -21,7 +21,7 @@ public sealed abstract class Person implements Greeting permits Student, Player,
     //
     // Instance Data Fields
     //
-
+    private String name;
     //
     // Constructors
     //
@@ -29,7 +29,12 @@ public sealed abstract class Person implements Greeting permits Student, Player,
     }
 
     // Instance Methods
-
+    protected String getName(){
+        return this.name;
+    }
+    protected void setName(String name){
+        this.name = name;
+    }
     //
     // Language
     //

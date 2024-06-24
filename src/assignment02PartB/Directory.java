@@ -20,6 +20,7 @@ public final class Directory {
 
     //
     // Instance Data Fields
+    private final String path = "./src/assignment02PartB/log/Receipt-*-*.log";
     //
 
     //
@@ -35,8 +36,8 @@ public final class Directory {
     //
     // Instance Methods
     //
-    public Directory getPath(){
-        return null;
+    public String getPath(){
+        return this.path;
     }
     //
     // Language

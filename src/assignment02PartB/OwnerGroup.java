@@ -16,15 +16,21 @@ public final class OwnerGroup extends Organization{
     //
     // Data fields
     //
-
+    private String name;
     //
     // Constructors
     //
     public OwnerGroup() {
     }
+    public OwnerGroup(String name){
+        this.name = name;
+    }
 
     //
     // Instance Methods
+    public String getName(){
+        return name;
+    }
     //
     @Override
     public void displayAbout(){
